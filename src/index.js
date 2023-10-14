@@ -1,9 +1,13 @@
-const express= require('express');
+const express = require('express');
 const sendMessage = require("./modules/chat");
 
-const app= express();
+const app = express();
 
 app.use(express.json());
+
+app.get('/', async (req, res) => {
+    return res.status(200).json({msg: 'server is running!!'});
+});
 
 
 app.post('/chat/:sessionId', async (req, res) => {
