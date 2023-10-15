@@ -1,10 +1,11 @@
 const dialogflow = require('@google-cloud/dialogflow');
 
-const sessionClient = new dialogflow.SessionsClient({keyFilename: './private_key.json'});
 
 async function sendMessage(sessionId, message) {
     try {
-        const sessionPath = sessionClient.projectAgentSessionPath(process.env.PROJECT_ID, sessionId);
+        const sessionClient = new dialogflow.SessionsClient({keyFilename: './private_key.json'});
+
+        const sessionPath = sessionClient.projectAgentSessionPath('austintest-buip', sessionId);
 
         const request = {
             session: sessionPath,
