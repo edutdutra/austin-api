@@ -1,8 +1,6 @@
 const dialogflow = require('@google-cloud/dialogflow');
 const googleConfig = require('../../private_key.json')
 
-// ToDo - Organizar payload de resposta
-
 async function sendMessage(sessionId, message) {
     try {
         const config = {
@@ -27,7 +25,7 @@ async function sendMessage(sessionId, message) {
 
         const responses = await sessionClient.detectIntent(request);
 
-        return responses[0];
+        return responses[0].queryResult.fulfillmentMessages[0];
     } catch (error) {
         console.log('ERRO ON SEND MESSAGE => ', error)
 
