@@ -25,7 +25,7 @@ async function sendMessage(sessionId, message) {
 
         const responses = await sessionClient.detectIntent(request);
 
-        return responses[0].queryResult.fulfillmentMessages[0];
+        return {...responses[0].queryResult.fulfillmentMessages[0], id: responses[0].responseId};
     } catch (error) {
         console.log('ERRO ON SEND MESSAGE => ', error)
 

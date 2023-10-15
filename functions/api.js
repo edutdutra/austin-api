@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require("cors");
 const serverless = require('serverless-http');
 const sendMessage = require("../src/modules/chat");
 
@@ -6,6 +7,7 @@ const app = express();
 const router = express.Router();
 
 app.use(express.json());
+app.use(cors());
 
 
 // Health Check Endpoint
