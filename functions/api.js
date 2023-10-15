@@ -5,6 +5,8 @@ const sendMessage = require("../src/modules/chat");
 const app = express();
 const router = express.Router();
 
+app.use(express.json());
+
 
 // Health Check Endpoint
 router.get('/', (req, res) => {
@@ -25,7 +27,6 @@ router.post('/chat/:sessionId', async (req, res) => {
 
     return res.status(200).json(messageResponse);
 });
-
 
 app.use('/.netlify/functions/api', router);
 

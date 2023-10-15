@@ -1,11 +1,19 @@
 const dialogflow = require('@google-cloud/dialogflow');
+const googleConfig = require('../../private_key.json')
 
+// ToDo - Organizar payload de resposta
 
 async function sendMessage(sessionId, message) {
     try {
-        const sessionClient = new dialogflow.SessionsClient({keyFilename: './private_key.json'});
+        const config = {
+            credentials: {
+                private_key: googleConfig.private_key,
+                client_email: googleConfig.client_email
+            }
+        }
 
-        const sessionPath = sessionClient.projectAgentSessionPath('austintest-buip', sessionId);
+        const sessionClient = new dialogflow.SessionsClient(config);
+        const sessionPath = sessionClient.projectAgentSessionPath(process.env.PROJECT_ID, sessionId);
 
         const request = {
             session: sessionPath,
